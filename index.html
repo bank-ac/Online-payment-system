@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>My Payment</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f7fa;
+      color: #222;
+    }
+
+    .app {
+      max-width: 480px;
+      margin: auto;
+      min-height: 100vh;
+      background: #ffffff;
+      padding-bottom: 80px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #168f4b, #0b6f39);
+      color: white;
+      padding: 25px 20px 30px;
+      border-radius: 0 0 25px 25px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 25px;
+    }
+
+    .brand h1 {
+      font-size: 23px;
+    }
+
+    .user {
+      font-size: 13px;
+      opacity: 0.9;
+    }
+
+    .balance-card {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 18px;
+      padding: 20px;
+    }
+
+    .balance-title {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .balance {
+      font-size: 32px;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+
+    .content {
+      padding: 20px;
+    }
+
+    .section-title {
+      font-size: 19px;
+      margin-bottom: 15px;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .action {
+      border: none;
+      background: #f1f7f3;
+      border-radius: 16px;
+      padding: 18px 10px;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .action .icon {
+      font-size: 25px;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .category {
+      padding: 18px;
+      border-radius: 17px;
+      background: #f7f2e8;
+    }
+
+    .category:nth-child(2) {
+      background: #eaf5ea;
+    }
+
+    .category:nth-child(3) {
+      background: #f2ebf8;
+    }
+
+    .category:nth-child(4) {
+      background: #edf4fa;
+    }
+
+    .category h3 {
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+
+    .category p {
+      color: #777;
+      font-size: 12px;
+    }
+
+    .transactions {
+      margin-bottom: 20px;
+    }
+
+    .transaction {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .transaction-name {
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .transaction-date {
+      color: #888;
+      font-size: 11px;
+      margin-top: 4px;
+    }
+
+    .plus {
+      color: #159447;
+      font-weight: bold;
+    }
+
+    .minus {
+      color: #d93636;
+      font-weight: bold;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 480px;
+      height: 65px;
+      background: white;
+      border-top: 1px solid #ddd;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      box-shadow: 0 -3px 12px rgba(0,0,0,0.08);
+    }
+
+    .nav-item {
+      text-align: center;
+      color: #777;
+      font-size: 11px;
+    }
+
+    .nav-item span {
+      display: block;
+      font-size: 21px;
+      margin-bottom: 3px;
+    }
+
+    .nav-active {
+      color: #159447;
+      font-weight: bold;
+    }
+
+    .notice {
+      background: #fff8df;
+      border-radius: 15px;
+      padding: 15px;
+      font-size: 12px;
+      color: #765d00;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="app">
+
+    <header>
+
+      <div class="brand">
+        <div>
+          <h1>🏦 My Payment</h1>
+          <div class="user">Welcome, User</div>
+        </div>
+
+        <div>🔔</div>
+      </div>
+
+      <div class="balance-card">
+        <div class="balance-title">
+          Available Balance
+        </div>
+
+        <div class="balance">
+          ৳ 0.00
+        </div>
+
+        <div class="user" style="margin-top:8px;">
+          Account ID: DEMO-001
+        </div>
+      </div>
+
+    </header>
+
+    <main class="content">
+
+      <h2 class="section-title">
+        Quick Actions
+      </h2>
+
+      <div class="actions">
+
+        <button class="action" onclick="demo('Deposit')">
+          <span class="icon">➕</span>
+          Deposit
+        </button>
+
+        <button class="action" onclick="demo('Transfer')">
+          <span class="icon">💸</span>
+          Transfer
+        </button>
+
+        <button class="action" onclick="demo('Withdraw')">
+          <span class="icon">🏧</span>
+          Withdraw
+        </button>
+
+        <button class="action" onclick="demo('History')">
+          <span class="icon">📜</span>
+          History
+        </button>
+
+      </div> 
+      <div class="category" style="background:#fff1f1; margin-bottom:20px;">
+  <h3>🟠 Nagad</h3>
+  <p>Send Money: 01628835240</p>
+  <small>send money only — payment নয়</small>
+      </div>
+
+      <h2 class="section-title">
+        Services
+      </h2>
+
+      <div class="categories">
+
+        <div class="category">
+          <h3>🛍️ Shopping</h3>
+          <p>Online shopping</p>
+        </div>
+
+        <div class="category">
+          <h3>📱 Mobile</h3>
+          <p>Mobile services</p>
+        </div>
+
+        <div class="category">
+          <h3>💡 Bills</h3>
+          <p>Pay your bills</p>
+        </div>
+
+        <div class="category">
+          <h3>🎁 Offers</h3>
+          <p>Special offers</p>
+        </div>
+
+      </div>
+
+      <h2 class="section-title">
+        Recent Transactions
+      </h2>
+
+      <div class="transactions">
+
+        <div class="transaction">
+          <div>
+            <div class="transaction-name">Account Created</div>
+            <div class="transaction-date">Today</div>
+          </div>
+
+          <div>৳ 0.00</div>
+        </div>
+
+        <div class="transaction">
+          <div>
+            <div class="transaction-name">Demo Transaction</div>
+            <div class="transaction-date">No real money</div>
+          </div>
+
+          <div class="plus">৳ 0.00</div>
+        </div>
+
+      </div>
+
+      <div class="notice">
+        ⚠️ : এই website একটি পরীক্ষামূলক সাইট। এখানে কোনো
+        money transaction বিভলে যাবে না ।কাজ না হলে ফেরত পাবেন ।
+      </div>
+
+    </main>
+
+    <nav class="bottom-nav">
+
+      <div class="nav-item nav-active">
+        <span>⌂</span>
+        Home
+      </div>
+
+      <div class="nav-item">
+        <span>📊</span>
+        Transactions
+      </div>
+
+      <div class="nav-item">
+        <span>💳</span>
+        Services
+      </div>
+
+      <div class="nav-item">
+        <span>👤</span>
+        Account
+      </div>
+
+    </nav>
+
+  </div>
+
+  <script>
+    function demo(action) {
+      alert(
+        action +
+        " section is ready for development.\n\n" +
+        "This is currently a demo system."
+      );
+    }
+  </script>
+
+</body>
+  </html>
